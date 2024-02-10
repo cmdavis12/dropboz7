@@ -14,12 +14,41 @@ Your name:
 <input type = "submit" name = "submit" value = "Submit">
 </form>
 <?php
+$host = "davisdb.mysql.database.azure.com";
+$user = "davis";
+$password = "RAiden101";
+$db = "visitordb";
+// connect to the database
+$conn = mysqli_init();
+mysqli_real_connect($conn, $host, $user, $password, $db, 3306);
+
 if (isset($_POST['submit']))
 {
 	$yourName = $_POST['name'];
+	$query = "INSERT INTO visitor (visitorName)
+ 	Values('yourName')";
+	if(mysqli_query($conn, $query))
 	echo "<p>Hi, $yourName, welcome to my cloud.</p>";
+	else
+	echo "<p>Hi, $yourName, please try again.</p>";
 }
+if (isset($_POST['view']))
+{
+$query = "SELECT * FROM visitor";
+$result = mysqli_query($conn, $query);
+if(mysqli_num_rows($result) > 0)
+{
+$display = "<h2>All Visitors</h2>";
+while($row = mysqli_fetch_assoc($result)){
+$display .="Name: ".$row["visitorName"]."<br>";
+$display .="Date Time: ".$row["visitTime"]."<br>";
+}
+}
+echo $display;
+}
+mysqli_close($conn);
 ?>
+<br>
 <br>
 <br>
 <p>Christopher Davis</p>
