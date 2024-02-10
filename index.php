@@ -12,6 +12,7 @@ Your name:
 <input type = "text" name = "name" size = "30" maxlength = "30">
 <br>
 <input type = "submit" name = "submit" value = "Submit">
+<input type = "submit" name = "view" value = "View All">
 </form>
 <?php
 $host = "davisdb.mysql.database.azure.com";
