@@ -27,7 +27,7 @@ if (isset($_POST['submit']))
 {
 	$yourName = $_POST['name'];
 	$query = "INSERT INTO visitor (visitorName)
- 	Values('yourName')";
+ 	Values('$yourName')";
 	if(mysqli_query($conn, $query))
 	echo "<p>Hi, $yourName, welcome to my cloud.</p>";
 	else
